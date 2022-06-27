@@ -1,0 +1,40 @@
+{
+  "name": "@maggo/use-flow",
+  "version": "0.0.1",
+  "description": "use-flow is a library of react hooks enabling developers to build DApps on Flow quickly and efficiently.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "flow",
+    "fcl",
+    "blockchain",
+    "dapp",
+    "react"
+  ],
+  "author": "@maggo",
+  "license": "MIT",
+  "dependencies": {
+    "react-query": "^3.39.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "esbuild": "^0.14.47",
+    "esbuild-node-externals": "^1.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.1.2",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "@onflow/fcl": "^1.0.0",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  }
+}

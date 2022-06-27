@@ -1,0 +1,16 @@
+{
+  "name": "use-flow-monorepo",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7"
+  },
+  "volta": {
+    "node": "16.15.1"
+  }
+}
