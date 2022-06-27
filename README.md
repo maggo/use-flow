@@ -5,6 +5,13 @@ The libary provides hook abstractions for all FCL functionality, like wallet con
 
 ## Installation
 
+```
+WORK IN PROGRESS!
+
+This library is not yet published to npm and the following commands will fail.
+Please check back later :^)
+```
+
 ```sh
 # yarn
 $ yarn add @maggo/use-flow @onflow/fcl
