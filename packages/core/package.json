@@ -30,6 +30,7 @@
   },
   "peerDependencies": {
     "@onflow/fcl": "^1.2.0",
+    "@onflow/types": "^1.0.2",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
