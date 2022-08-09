@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { currentUser } from "@onflow/fcl";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 interface FlowUser {
   /** The public address of the current user */

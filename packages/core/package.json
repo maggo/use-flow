@@ -18,9 +18,6 @@
   ],
   "author": "@maggo",
   "license": "MIT",
-  "dependencies": {
-    "react-query": "^3.39.1"
-  },
   "devDependencies": {
     "@types/node": "18.0.0",
     "@types/react": "^18.0.14",
@@ -36,5 +33,8 @@
   "peerDependencies": {
     "@onflow/fcl": "^1.0.0",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.0.10"
   }
 }
