@@ -1,8 +1,9 @@
 import { config } from "@onflow/fcl";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
+import { AddressLike } from "./misc";
 
-export interface FCLConfig {
+export interface FCLConfig extends Record<AddressLike, AddressLike> {
   "accessNode.api": string;
   "app.detail.title"?: string;
   "app.detail.icon"?: string;

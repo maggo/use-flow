@@ -5,11 +5,12 @@ const client = createClient({
   fclConfig: {
     "accessNode.api": "https://rest-mainnet.onflow.org",
     "discovery.wallet": "https://fcl-discovery.onflow.org/authn",
+    "0xFIND": "0x097bafa4e0b48eef",
   },
 });
 
 const CADENCE_SCRIPT = `
-import FIND, Profile from 0x097bafa4e0b48eef
+import FIND, Profile from 0xFIND
 
 pub fun main(name: String): Profile.UserProfile? {
   return FIND.lookup(name)?.asProfile()
@@ -34,12 +35,11 @@ export default function Home() {
 function FindProfile() {
   const [query, setQuery] = useState("marco.find");
 
-  const { data, isLoading, isFetching, isError, error, refetch } =
-    useScript<Profile>({
-      key: ["find-profile", query],
-      cadence: CADENCE_SCRIPT,
-      args: (arg, t) => [arg(prepareName(query), t.String)],
-    });
+  const { data, isLoading, isFetching, isError, error } = useScript<Profile>({
+    key: ["find-profile", query],
+    cadence: CADENCE_SCRIPT,
+    args: (arg, t) => [arg(prepareName(query), t.String)],
+  });
 
   const SearchHeader = (
     <form
