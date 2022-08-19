@@ -1,15 +1,13 @@
 import { query } from "@onflow/fcl";
-import { QueryKey, useQuery, UseQueryOptions } from "@tanstack/react-query";
+import * as types from "@onflow/types";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { ArgumentFunction } from "./arguments";
 import { FlowError } from "./errors";
 
+// @TODO Replace with @onflow/sdk arg function
+const arg = (value: any, xform: any) => ({ value, xform });
+
 interface UseScriptProps<Result = any> {
-  /**
-   * The key is a string or array that identifies your query in the cache.
-   *
-   * @see {@link https://react-query.tanstack.com/guides/query-keys}
-   */
-  key: QueryKey;
   /**
    * The cadence code of your script
    */
@@ -43,11 +41,12 @@ export function useScript<ResultType = any>({
   cadence,
   args,
   limit,
-  key,
   options,
 }: UseScriptProps) {
+  const resolvedArgs = args(arg, types);
+
   const result = useQuery<ResultType, FlowError>(
-    key,
+    [cadence, resolvedArgs],
     () => executeScript<ResultType>({ cadence, args, limit }),
     options
   );
