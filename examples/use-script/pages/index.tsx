@@ -36,7 +36,6 @@ function FindProfile() {
   const [query, setQuery] = useState("marco.find");
 
   const { data, isLoading, isFetching, isError, error } = useScript<Profile>({
-    key: ["find-profile", query],
     cadence: CADENCE_SCRIPT,
     args: (arg, t) => [arg(prepareName(query), t.String)],
   });
