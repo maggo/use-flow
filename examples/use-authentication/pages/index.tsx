@@ -1,9 +1,13 @@
-import { FlowProvider, createClient, useAuthentication } from "@maggo/use-flow";
+import {
+  createClient,
+  FlowProvider,
+  networks,
+  useAuthentication,
+} from "@maggo/use-flow";
 
 const client = createClient({
   fclConfig: {
-    "accessNode.api": "https://access-testnet.onflow.org",
-    "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
+    ...networks.testnet,
   },
 });
 

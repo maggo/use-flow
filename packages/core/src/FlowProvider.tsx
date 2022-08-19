@@ -2,7 +2,7 @@ import { config } from "@onflow/fcl";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 
-interface FCLConfig {
+export interface FCLConfig {
   "accessNode.api": string;
   "app.detail.title"?: string;
   "app.detail.icon"?: string;
