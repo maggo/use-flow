@@ -1,0 +1,16 @@
+{
+  "contracts": {},
+  "networks": {
+    "emulator": "127.0.0.1:3569",
+    "mainnet": "access.mainnet.nodes.onflow.org:9000",
+    "testnet": "access.devnet.nodes.onflow.org:9000",
+    "canarynet": "access.canary.nodes.onflow.org:9000"
+  },
+  "accounts": {
+    "emulator-account": {
+      "address": "f8d6e0586b0a20c7",
+      "key": "aebb225a57e8f92eb83b81a48b6c07f5d1ecc0ee6d913c84fa93f60d8a5c68f8"
+    }
+  },
+  "deployments": {}
+}
