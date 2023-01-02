@@ -30,7 +30,13 @@ function Login() {
     return (
       <>
         <p>Address: {user?.addr}</p>
-        <button onClick={() => logout()}>Logout</button>
+        <p>
+          <button onClick={() => logout()}>Logout</button>
+        </p>
+        <details>
+          <summary>Raw Data</summary>
+          <pre>{JSON.stringify(user, null, 2)}</pre>
+        </details>
       </>
     );
   }
