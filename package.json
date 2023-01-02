@@ -6,6 +6,9 @@
     "packages/*",
     "examples/*"
   ],
+  "scripts": {
+    "dev": "pnpm --parallel dev"
+  },
   "engines": {
     "node": ">=16",
     "pnpm": ">=7"
