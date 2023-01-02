@@ -27,7 +27,7 @@ interface Profile {
   avatar: string;
 }
 
-export default function Home() {
+export default function UseScript() {
   return (
     <FlowProvider client={client}>
       <h1>useScript Example</h1>

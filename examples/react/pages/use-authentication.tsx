@@ -11,7 +11,7 @@ const client = createClient({
   },
 });
 
-export default function Home() {
+export default function UseAuthentication() {
   return (
     <FlowProvider client={client}>
       <h1>useAuthentication Example</h1>
