@@ -17,7 +17,7 @@ interface UseScriptProps<Result = any> {
    *
    * @see {@link https://docs.onflow.org/fcl/reference/api/#argumentfunction}
    */
-  args?: ArgumentFunction;
+  args: ArgumentFunction;
   /**
    * Optional gas limit for this script.
    *
@@ -43,7 +43,7 @@ export function useScript<ResultType = any>({
   limit,
   options,
 }: UseScriptProps) {
-  const resolvedArgs = args(arg, types);
+  const resolvedArgs = args ? args(arg, types) : [];
 
   const result = useQuery<ResultType, FlowError>(
     [cadence, resolvedArgs],
