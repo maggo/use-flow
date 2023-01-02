@@ -1,10 +1,14 @@
-import { createClient, FlowProvider, useScript } from "@maggo/use-flow";
+import {
+  createClient,
+  FlowProvider,
+  networks,
+  useScript,
+} from "@maggo/use-flow";
 import { useState } from "react";
 
 const client = createClient({
   fclConfig: {
-    "accessNode.api": "https://rest-mainnet.onflow.org",
-    "discovery.wallet": "https://fcl-discovery.onflow.org/authn",
+    ...networks.mainnet,
     "0xFIND": "0x097bafa4e0b48eef",
   },
 });
