@@ -19,11 +19,10 @@ interface FlowProviderProps {
 }
 
 export function FlowProvider({ children, client }: FlowProviderProps) {
-  React.useEffect(() => {
-    const c = config();
-    Object.entries(client.fclConfig).forEach(([key, value]) => {
-      c.put(key, value);
-    });
+  // @TODO Investigate better way to apply config
+  // We want to be SSR friendly, so we can't use useEffect/useLayoutEffect
+  React.useLayoutEffect(() => {
+    config(client.fclConfig);
   }, [client.fclConfig]);
 
   return (

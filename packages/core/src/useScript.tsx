@@ -60,6 +60,9 @@ interface ExecuteScriptProps {
   limit?: number;
 }
 
+/**
+ * Helper function that wraps the FCL `query` function and adds custom error handling.
+ */
 export async function executeScript<ResultType = any>({
   cadence,
   args,
