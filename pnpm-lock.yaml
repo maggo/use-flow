@@ -5,36 +5,13 @@ importers:
   .:
     specifiers: {}
 
-  examples/use-authentication:
+  examples/react:
     specifiers:
       '@maggo/use-flow': workspace:*
       '@onflow/fcl': ^1.2.0
       '@types/node': 18.6.5
       '@types/react': ^18.0.17
       '@types/react-dom': ^18.0.6
-      next: 12.2.4
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      typescript: 4.7.4
-    dependencies:
-      '@maggo/use-flow': link:../../packages/core
-      '@onflow/fcl': 1.2.0
-      next: 12.2.4_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    devDependencies:
-      '@types/node': 18.6.5
-      '@types/react': 18.0.17
-      '@types/react-dom': 18.0.6
-      typescript: 4.7.4
-
-  examples/use-script:
-    specifiers:
-      '@maggo/use-flow': workspace:*
-      '@onflow/fcl': ^1.1.0
-      '@types/node': 18.6.5
-      '@types/react': ^18.0.14
-      '@types/react-dom': ^18.0.5
       next: 12.2.4
       react: ^18.2.0
       react-dom: ^18.2.0
