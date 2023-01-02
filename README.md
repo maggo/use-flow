@@ -23,4 +23,4 @@ $ npm i @maggo/use-flow @onflow/fcl
 
 ## Usage
 
-WIP: See [examples/use-authentication](examples/use-authentication/pages/index.tsx)
+WIP: See [examples/react](examples/react)
