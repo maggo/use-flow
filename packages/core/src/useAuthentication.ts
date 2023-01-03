@@ -16,7 +16,7 @@ interface FlowUser {
   /** If the user is logged in. */
   loggedIn: boolean | null;
   /** A list of trusted services that express ways of interacting with the current user's identity, including means to further discovery, authentication, authorization, or other kinds of interactions. */
-  services: any[];
+  services: unknown[];
 }
 
 interface UseAuthenticationAPI {

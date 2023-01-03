@@ -1,23 +1,26 @@
 /** @TODO Refactor to better argument type system */
 
-export type ArgumentFunction = (arg: ArgFunc, t: FType) => any[];
+export type ArgumentFunction = (
+  arg: ArgFunc,
+  t: FType
+) => ReturnType<ArgFunc>[];
 
-type ArgFunc<
-  T extends any = any,
+export type ArgFunc<
+  T = any,
   F extends FType<T>[keyof FType] = FType<T>[keyof FType]
 > = (value: T, xform: F) => ArgumentObject<T, F>;
 
-type ArgType<T extends any = any> = (
+export type ArgType<T = any> = (
   label: string,
   asArgument: (value: T) => any
 ) => { label: string; asArgument: (value: T) => any };
 
-type ArgumentObject<Value extends any, Form extends FType[keyof FType]> = {
+type ArgumentObject<Value, Form extends FType[keyof FType]> = {
   value: Value;
   xform: Form;
 };
 
-interface FType<T extends any = any> {
+interface FType<T = any> {
   UInt: ArgType<string>;
   Int: ArgType<string>;
   UInt8: ArgType<string>;

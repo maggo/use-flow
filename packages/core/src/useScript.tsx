@@ -1,13 +1,16 @@
 import { query } from "@onflow/fcl";
 import * as types from "@onflow/types";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { ArgumentFunction } from "./arguments";
+import { ArgFunc, ArgType, ArgumentFunction } from "./arguments";
 import { FlowError } from "./errors";
 
 // @TODO Replace with @onflow/sdk arg function
-const arg = (value: any, xform: any) => ({ value, xform });
+const arg: ArgFunc<any, any> = (value: unknown, xform: ArgType) => ({
+  value,
+  xform,
+});
 
-interface UseScriptProps<Result = any> {
+interface UseScriptProps<ResultType = unknown> {
   /**
    * The cadence code of your script
    */
@@ -29,7 +32,10 @@ interface UseScriptProps<Result = any> {
    *
    * @see {@link https://react-query.tanstack.com/reference/useQuery}
    */
-  options?: Omit<UseQueryOptions<Result, FlowError>, "queryKey" | "queryFn">;
+  options?: Omit<
+    UseQueryOptions<ResultType, FlowError, ResultType, any>,
+    "queryKey" | "queryFn"
+  >;
 }
 
 /**
@@ -37,16 +43,16 @@ interface UseScriptProps<Result = any> {
  *
  * @see {@link https://docs.onflow.org/fcl/reference/api/#query}
  */
-export function useScript<ResultType = any>({
+export function useScript<ResultType = unknown>({
   cadence,
   args,
   limit,
   options,
-}: UseScriptProps) {
+}: UseScriptProps<ResultType>) {
   const resolvedArgs = args ? args(arg, types) : [];
 
   const result = useQuery<ResultType, FlowError>(
-    [cadence, resolvedArgs],
+    ["useQuery", cadence, resolvedArgs],
     () => executeScript<ResultType>({ cadence, args, limit }),
     options
   );
@@ -63,7 +69,7 @@ interface ExecuteScriptProps {
 /**
  * Helper function that wraps the FCL `query` function and adds custom error handling.
  */
-export async function executeScript<ResultType = any>({
+export async function executeScript<ResultType = unknown>({
   cadence,
   args,
   limit,
@@ -74,7 +80,11 @@ export async function executeScript<ResultType = any>({
       args,
       limit,
     });
-  } catch (e: any) {
+  } catch (e) {
+    if (!(e instanceof Error)) {
+      throw e;
+    }
+
     if (e.message) {
       // @TODO: Implement custom error system */
       const matches = (e.message as string).match(/^error: (.*): (.*)$/m);

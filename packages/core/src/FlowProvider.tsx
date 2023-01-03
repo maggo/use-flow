@@ -42,7 +42,7 @@ interface FlowClient {
 }
 
 export function createClient({ fclConfig }: CreateClientProps): FlowClient {
-  let queryClient = new QueryClient();
+  const queryClient = new QueryClient();
 
   return { queryClient, fclConfig };
 }

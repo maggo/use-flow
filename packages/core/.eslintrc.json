@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react", "@tanstack/eslint-plugin-query"],
+  "ignorePatterns": ["**/node_modules/*", "**/dist/*"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
