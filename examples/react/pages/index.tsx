@@ -9,6 +9,7 @@ export default function Index() {
         <Example name="use-script" />
         <Example name="use-block" />
         <Example name="use-event-subscription" />
+        <Example name="use-wallet-discovery" />
       </ul>
     </>
   );

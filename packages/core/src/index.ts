@@ -5,3 +5,4 @@ export { useAuthentication } from "./useAuthentication";
 export { useBlock } from "./useBlock";
 export { useEventSubscription } from "./useEventSubscription";
 export { useScript } from "./useScript";
+export { useWalletDiscovery } from "./useWalletDiscovery";

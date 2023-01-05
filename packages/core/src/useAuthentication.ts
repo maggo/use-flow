@@ -1,6 +1,7 @@
 import { currentUser } from "@onflow/fcl";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { Wallet } from "./useWalletDiscovery";
 
 interface FlowUser {
   /** The public address of the current user */
@@ -29,9 +30,13 @@ interface UseAuthenticationAPI {
   /** The user is currently logging in with their wallet */
   isLoggingIn: boolean;
   /** Triggers the FCL login */
-  login: () => Promise<void>;
+  login: typeof Login;
   /** Triggers the FCL logout */
   logout: () => void;
+}
+
+interface LoginProps {
+  service: Wallet;
 }
 
 /**
@@ -43,11 +48,9 @@ export function useAuthentication(): UseAuthenticationAPI {
 
   const { isLoading: isLoggingIn, mutateAsync: login } = useMutation<
     void,
-    Error
-  >(async () => {
-    // @TODO: Figure out error handling if login fails
-    return currentUser.authenticate();
-  });
+    Error,
+    LoginProps | undefined
+  >(Login);
 
   const { mutate: logout } = useMutation<void>(() => {
     // @TODO: Logout causes 3 rerenders of the component.
@@ -71,4 +74,9 @@ export function useAuthentication(): UseAuthenticationAPI {
     login,
     logout,
   };
+}
+
+async function Login(props?: LoginProps): Promise<void> {
+  // @TODO: Figure out error handling if login fails
+  return currentUser.authenticate(props);
 }
