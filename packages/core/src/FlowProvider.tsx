@@ -9,6 +9,7 @@ export interface FCLConfig extends Record<AddressLike, AddressLike> {
   "app.detail.icon"?: string;
   "discovery.authn.endpoint"?: string;
   "discovery.wallet": string;
+  "fcl.eventPollRate"?: number;
   "fcl.limit"?: number;
   "flow.network"?: "local" | "canarynet" | "testnet" | "mainnet";
 }

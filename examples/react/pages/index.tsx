@@ -8,6 +8,7 @@ export default function Index() {
         <Example name="use-authentication" />
         <Example name="use-script" />
         <Example name="use-block" />
+        <Example name="use-event-subscription" />
       </ul>
     </>
   );
