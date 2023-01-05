@@ -7,6 +7,7 @@ export default function Index() {
       <ul>
         <Example name="use-authentication" />
         <Example name="use-script" />
+        <Example name="use-block" />
       </ul>
     </>
   );
