@@ -7,7 +7,9 @@
     "examples/*"
   ],
   "scripts": {
-    "dev": "pnpm --parallel dev"
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "dev": "turbo run dev"
   },
   "engines": {
     "node": ">=16",
@@ -15,5 +17,8 @@
   },
   "volta": {
     "node": "16.15.1"
+  },
+  "devDependencies": {
+    "turbo": "^1.6.3"
   }
 }

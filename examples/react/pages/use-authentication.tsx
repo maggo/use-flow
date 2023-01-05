@@ -43,7 +43,7 @@ function Login() {
 
   return (
     <>
-      <p>You're not logged in.</p>
+      <p>You&apos;re not logged in.</p>
       <button disabled={isLoggingIn} onClick={() => login()}>
         {isLoggingIn ? "Logging in…" : "Login"}
       </button>
