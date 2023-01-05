@@ -75,7 +75,7 @@ export async function executeScript<ResultType = unknown>({
   limit,
 }: ExecuteScriptProps): Promise<ResultType> {
   try {
-    return await query({
+    return query({
       cadence,
       args,
       limit,
@@ -87,12 +87,12 @@ export async function executeScript<ResultType = unknown>({
 
     if (e.message) {
       // @TODO: Implement custom error system */
-      const matches = (e.message as string).match(/^error: (.*): (.*)$/m);
+      const matches = e.message.match(/^error: (.*): (.*)$/m);
       if (!matches) throw e;
 
       const [, kind, internalMessage] = matches;
 
-      throw new FlowError(e.message, kind, internalMessage);
+      throw new FlowError(e.message, { kind, internalMessage, cause: e });
     }
 
     throw new FlowError(e.message);
