@@ -6,6 +6,8 @@ import { FCLConfig } from "./FlowProvider";
 export const mainnet: FCLConfig = {
   "accessNode.api": "https://rest-mainnet.onflow.org",
   "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
+  "discovery.authn.endpoint":
+    "https://fcl-discovery.onflow.org/api/mainnet/authn",
   "flow.network": "mainnet",
 };
 
@@ -15,6 +17,8 @@ export const mainnet: FCLConfig = {
 export const testnet: FCLConfig = {
   "accessNode.api": "https://rest-testnet.onflow.org",
   "discovery.wallet": "https://fcl-discovery.onflow.org/mainnet/authn",
+  "discovery.authn.endpoint":
+    "https://fcl-discovery.onflow.org/api/testnet/authn",
   "flow.network": "testnet",
 };
 
@@ -24,6 +28,8 @@ export const testnet: FCLConfig = {
 export const canarynet: FCLConfig = {
   "accessNode.api": "https://rest-canarynet.onflow.org",
   "discovery.wallet": "https://fcl-discovery.onflow.org/canarynet/authn",
+  "discovery.authn.endpoint":
+    "https://fcl-discovery.onflow.org/api/canarynet/authn",
   "flow.network": "canarynet",
 };
 
