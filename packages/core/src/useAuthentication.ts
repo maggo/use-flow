@@ -1,6 +1,7 @@
 import { currentUser } from "@onflow/fcl";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { AddressLike } from "./misc";
 import { Wallet } from "./useWalletDiscovery";
 
 interface FlowUser {
@@ -33,6 +34,8 @@ interface UseAuthenticationAPI {
   login: typeof Login;
   /** Triggers the FCL logout */
   logout: () => void;
+  /** A method to use allowing the user to personally sign data via FCL Compatible Wallets/Services. */
+  signUserMessage?: (message: string | Buffer) => Promise<CompositeSignature[]>;
 }
 
 interface LoginProps {
@@ -66,6 +69,17 @@ export function useAuthentication(): UseAuthenticationAPI {
     };
   }, [currentUser]);
 
+  const signUserMessage = useMemo(
+    () =>
+      currentUser
+        ? (message: string | Buffer) => {
+            if (typeof message === "string") message = Buffer.from(message);
+            return currentUser.signUserMessage(message.toString("hex"));
+          }
+        : undefined,
+    [currentUser]
+  );
+
   return {
     user,
     isReady: user !== null,
@@ -73,10 +87,19 @@ export function useAuthentication(): UseAuthenticationAPI {
     isLoggingIn,
     login,
     logout,
+    signUserMessage,
   };
 }
 
 async function Login(props?: LoginProps): Promise<void> {
   // @TODO: Figure out error handling if login fails
   return currentUser.authenticate(props);
+}
+
+export interface CompositeSignature {
+  f_type: "CompositeSignature";
+  f_vsn: string;
+  addr: AddressLike;
+  keyId: number;
+  signature: string;
 }

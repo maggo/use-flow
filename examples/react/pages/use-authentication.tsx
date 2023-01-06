@@ -4,6 +4,8 @@ import {
   networks,
   useAuthentication,
 } from "@maggo/use-flow";
+import { CompositeSignature } from "@maggo/use-flow/dist/useAuthentication";
+import { useState } from "react";
 
 const client = createClient({
   fclConfig: {
@@ -21,8 +23,17 @@ export default function UseAuthentication() {
 }
 
 function Login() {
-  const { isReady, isLoggedIn, isLoggingIn, login, logout, user } =
-    useAuthentication();
+  const {
+    isReady,
+    isLoggedIn,
+    isLoggingIn,
+    login,
+    logout,
+    user,
+    signUserMessage,
+  } = useAuthentication();
+
+  const [signedMessage, setSignedMessage] = useState<CompositeSignature[]>();
 
   if (!isReady) return <p>Loading…</p>;
 
@@ -30,6 +41,22 @@ function Login() {
     return (
       <>
         <p>Address: {user?.addr}</p>
+        <p>
+          <button
+            onClick={async () => {
+              const message = await signUserMessage?.("Hello World");
+              setSignedMessage(message);
+            }}
+          >
+            Sign User Message
+          </button>
+        </p>
+        {signedMessage && (
+          <>
+            <p>Signed Message:</p>
+            <pre>{JSON.stringify(signedMessage, null, 2)}</pre>
+          </>
+        )}
         <p>
           <button onClick={() => logout()}>Logout</button>
         </p>
