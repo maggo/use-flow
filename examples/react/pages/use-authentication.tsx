@@ -3,9 +3,10 @@ import {
   FlowProvider,
   networks,
   useAuthentication,
+  verifyUserSignatures,
 } from "@maggo/use-flow";
 import { CompositeSignature } from "@maggo/use-flow/dist/useAuthentication";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const client = createClient({
   fclConfig: {
@@ -34,6 +35,26 @@ function Login() {
   } = useAuthentication();
 
   const [signedMessage, setSignedMessage] = useState<CompositeSignature[]>();
+  const [signedMessageValid, setSignedMessageValid] = useState<
+    boolean | undefined
+  >(undefined);
+
+  useEffect(() => {
+    if (!signedMessage) {
+      setSignedMessageValid(undefined);
+      return;
+    }
+
+    async function validateMessage() {
+      if (!signedMessage) return;
+
+      const result = await verifyUserSignatures("Hello World", signedMessage);
+
+      setSignedMessageValid(result);
+    }
+
+    validateMessage();
+  }, [signedMessage]);
 
   if (!isReady) return <p>Loading…</p>;
 
@@ -55,6 +76,11 @@ function Login() {
           <>
             <p>Signed Message:</p>
             <pre>{JSON.stringify(signedMessage, null, 2)}</pre>
+            {signedMessageValid !== undefined && (
+              <p>
+                Signature Verified: <code>{signedMessageValid.toString()}</code>
+              </p>
+            )}
           </>
         )}
         <p>
