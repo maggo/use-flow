@@ -74,7 +74,9 @@ function FindProfile() {
     return (
       <>
         {SearchHeader}
-        <p>Internal Error: {error.internalMessage}</p>
+        {!!error.internalMessage && (
+          <p>Internal Error: {error.internalMessage}</p>
+        )}
         <details>
           <summary>Raw Error</summary>
           <pre style={{ overflowX: "auto" }}>{error.message}</pre>
