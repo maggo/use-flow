@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean": "rimraf ./.dist"
   },
   "keywords": [
     "flow",

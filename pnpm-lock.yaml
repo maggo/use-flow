@@ -20,6 +20,7 @@ importers:
       next: 13.1.1
       react: ^18.2.0
       react-dom: ^18.2.0
+      rimraf: ^3.0.2
       typescript: 4.9.4
     dependencies:
       '@maggo/use-flow': link:../../packages/core
@@ -33,6 +34,7 @@ importers:
       '@types/react-dom': 18.0.10
       encoding: 0.1.13
       eslint-config-next: 13.1.1_iukboom6ndih5an6iafl45j2fe
+      rimraf: 3.0.2
       typescript: 4.9.4
 
   packages/core:

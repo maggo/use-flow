@@ -9,7 +9,8 @@
   "scripts": {
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "clean": "turbo run clean"
   },
   "engines": {
     "node": ">=16",
