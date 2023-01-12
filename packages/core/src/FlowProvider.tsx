@@ -1,6 +1,6 @@
 import { config } from "@onflow/fcl";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React from "react";
+import { ReactNode, useLayoutEffect } from "react";
 import { AddressLike } from "./misc";
 
 /**
@@ -53,14 +53,14 @@ export interface FCLConfig extends Record<AddressLike, AddressLike> {
 }
 
 interface FlowProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
   client: FlowClient;
 }
 
 export function FlowProvider({ children, client }: FlowProviderProps) {
   // @TODO Investigate better way to apply config
   // We want to be SSR friendly, so we can't use useEffect/useLayoutEffect
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     config(client.fclConfig);
   }, [client.fclConfig]);
 
