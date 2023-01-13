@@ -2,6 +2,7 @@ export { verifyUserSignatures } from "./appUtils";
 export { ArgumentFunction } from "./arguments";
 export { createClient, FlowProvider } from "./FlowProvider";
 export * as networks from "./networks";
+export { useAccount } from "./useAccount";
 export { useAuthentication } from "./useAuthentication";
 export { useBlock } from "./useBlock";
 export { useEventSubscription } from "./useEventSubscription";

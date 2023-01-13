@@ -43,6 +43,7 @@ export function isFCLHTTPRequestError(
  * @TODO Refine the error handling system
  */
 export function handleFCLErrors(e: Error | unknown) {
+  console.dir(e);
   // Some weird error that is not actually an Error object, just rethrow it
   if (!(e instanceof Error)) throw e;
 
