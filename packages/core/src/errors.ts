@@ -46,6 +46,11 @@ export function handleFCLErrors(e: Error | unknown) {
   // Some weird error that is not actually an Error object, just rethrow it
   if (!(e instanceof Error)) throw e;
 
+  // If error is a FCLHTTPRequestError, we throw a FlowError with `errorMessage`
+  if (isFCLHTTPRequestError(e)) {
+    throw new FlowError(e.errorMessage, { cause: e });
+  }
+
   // If error has a message, we try to parse it
   if (e.message) {
     // @TODO: Implement custom error system */

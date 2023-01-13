@@ -1,10 +1,6 @@
 import { block as fclBlock } from "@onflow/fcl";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import {
-  FCLHTTPRequestError,
-  FlowError,
-  isFCLHTTPRequestError,
-} from "./errors";
+import { FlowError, isFCLHTTPRequestError } from "./errors";
 
 export interface Block {
   /** The id of the block. */
@@ -68,13 +64,13 @@ async function queryBlock(
 ): Promise<Block> {
   try {
     if (id === "latest") {
-      return fclBlock({ sealed });
+      return await fclBlock({ sealed });
     }
 
     const blockId = typeof id === "string" ? id : undefined;
     const blockHeight = typeof id === "number" ? id : undefined;
 
-    return fclBlock({ id: blockId, height: blockHeight });
+    return await fclBlock({ id: blockId, height: blockHeight });
   } catch (e) {
     if (!(e instanceof Error)) throw e;
 

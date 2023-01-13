@@ -19,7 +19,7 @@ export async function verifyUserSignatures(
   opts?: verifyUserSignaturesOptions
 ): Promise<boolean> {
   if (typeof message === "string") message = Buffer.from(message);
-  return AppUtils.verifyUserSignatures(
+  return await AppUtils.verifyUserSignatures(
     message.toString("hex"),
     compositeSignatures,
     opts

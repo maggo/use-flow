@@ -97,7 +97,7 @@ async function executeMutate({
   limit,
 }: ExecuteMutateProps): Promise<string> {
   try {
-    return mutate({
+    return await mutate({
       cadence,
       args,
       limit,

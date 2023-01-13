@@ -94,7 +94,7 @@ export function useAuthentication(): UseAuthenticationAPI {
 
 async function Login(props?: LoginProps): Promise<void> {
   try {
-    return currentUser.authenticate(props);
+    return await currentUser.authenticate(props);
   } catch (e) {
     throw handleFCLErrors(e);
   }

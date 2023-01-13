@@ -75,7 +75,7 @@ export async function executeScript<ResultType = unknown>({
   limit,
 }: ExecuteScriptProps): Promise<ResultType> {
   try {
-    return query({
+    return await query({
       cadence,
       args,
       limit,
