@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { useCallback } from "react";
 import { ArgumentFunction } from "./arguments";
-import { FlowError } from "./errors";
+import { FlowError, handleFCLErrors } from "./errors";
 
 /**
  * The authorization function is used to specify the payer, proposer or authorizer of a transaction.
@@ -103,20 +103,6 @@ async function executeMutate({
       limit,
     });
   } catch (e) {
-    if (!(e instanceof Error)) {
-      throw e;
-    }
-
-    if (e.message) {
-      // @TODO: Implement custom error system */
-      const matches = e.message.match(/^error: (.*): (.*)$/m);
-      if (matches) {
-        const [, kind, internalMessage] = matches;
-
-        throw new FlowError(e.message, { kind, internalMessage, cause: e });
-      }
-    }
-
-    throw new FlowError(e.message);
+    throw handleFCLErrors(e);
   }
 }

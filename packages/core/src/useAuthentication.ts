@@ -1,6 +1,7 @@
 import { currentUser } from "@onflow/fcl";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
+import { handleFCLErrors } from "./errors";
 import { AddressLike } from "./misc";
 import { Wallet } from "./useWalletDiscovery";
 
@@ -92,8 +93,11 @@ export function useAuthentication(): UseAuthenticationAPI {
 }
 
 async function Login(props?: LoginProps): Promise<void> {
-  // @TODO: Figure out error handling if login fails
-  return currentUser.authenticate(props);
+  try {
+    return currentUser.authenticate(props);
+  } catch (e) {
+    throw handleFCLErrors(e);
+  }
 }
 
 export interface CompositeSignature {

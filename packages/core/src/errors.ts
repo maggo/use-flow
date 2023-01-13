@@ -36,3 +36,27 @@ export function isFCLHTTPRequestError(
 ): error is FCLHTTPRequestError {
   return error.name === "HTTP Request Error";
 }
+
+/**
+ * Handle errors thrown by FCL.
+ *
+ * @TODO Refine the error handling system
+ */
+export function handleFCLErrors(e: Error | unknown) {
+  // Some weird error that is not actually an Error object, just rethrow it
+  if (!(e instanceof Error)) throw e;
+
+  // If error has a message, we try to parse it
+  if (e.message) {
+    // @TODO: Implement custom error system */
+    const matches = e.message.match(/^error: (.*): (.*)$/m);
+    if (matches) {
+      const [, kind, internalMessage] = matches;
+
+      throw new FlowError(e.message, { kind, internalMessage, cause: e });
+    }
+  }
+
+  // If all else fails we just throw a FlowError
+  throw new FlowError(e.message, { cause: e });
+}

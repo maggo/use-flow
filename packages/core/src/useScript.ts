@@ -2,7 +2,7 @@ import { query } from "@onflow/fcl";
 import * as types from "@onflow/types";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { ArgFunc, ArgType, ArgumentFunction } from "./arguments";
-import { FlowError } from "./errors";
+import { FlowError, handleFCLErrors } from "./errors";
 
 // @TODO Replace with @onflow/sdk arg function
 const arg: ArgFunc<any, any> = (value: unknown, xform: ArgType) => ({
@@ -81,20 +81,6 @@ export async function executeScript<ResultType = unknown>({
       limit,
     });
   } catch (e) {
-    if (!(e instanceof Error)) {
-      throw e;
-    }
-
-    if (e.message) {
-      // @TODO: Implement custom error system */
-      const matches = e.message.match(/^error: (.*): (.*)$/m);
-      if (!matches) throw e;
-
-      const [, kind, internalMessage] = matches;
-
-      throw new FlowError(e.message, { kind, internalMessage, cause: e });
-    }
-
-    throw new FlowError(e.message);
+    throw handleFCLErrors(e);
   }
 }
