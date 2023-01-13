@@ -1,14 +1,10 @@
-import { query } from "@onflow/fcl";
+import { arg, query } from "@onflow/fcl";
 import * as types from "@onflow/types";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { ArgFunc, ArgType, ArgumentFunction } from "./arguments";
+import { ArgumentFunction } from "./arguments";
 import { FlowError, handleFCLErrors } from "./errors";
 
-// @TODO Replace with @onflow/sdk arg function
-const arg: ArgFunc<any, any> = (value: unknown, xform: ArgType) => ({
-  value,
-  xform,
-});
+type QueryKeyType = ["useScript", string, ReturnType<ArgumentFunction>];
 
 interface UseScriptProps<ResultType = unknown> {
   /**
@@ -33,7 +29,7 @@ interface UseScriptProps<ResultType = unknown> {
    * @see {@link https://react-query.tanstack.com/reference/useQuery}
    */
   options?: Omit<
-    UseQueryOptions<ResultType, FlowError, ResultType, any>,
+    UseQueryOptions<ResultType, FlowError, ResultType, QueryKeyType>,
     "queryKey" | "queryFn"
   >;
 }
@@ -51,11 +47,11 @@ export function useScript<ResultType = unknown>({
 }: UseScriptProps<ResultType>) {
   const resolvedArgs = args ? args(arg, types) : [];
 
-  const result = useQuery<ResultType, FlowError>(
-    ["useQuery", cadence, resolvedArgs],
-    () => executeScript<ResultType>({ cadence, args, limit }),
-    options
-  );
+  const result = useQuery<ResultType, FlowError, ResultType, QueryKeyType>({
+    queryKey: ["useScript", cadence, resolvedArgs],
+    queryFn: () => executeScript<ResultType>({ cadence, args, limit }),
+    ...options,
+  });
 
   return result;
 }
