@@ -20,7 +20,6 @@ export function useWalletDiscovery(props?: UseWalletDiscoveryProps) {
 
   useEffect(() => {
     discovery.authn.subscribe(({ results }: { results: Wallet[] }) => {
-      console.log(results);
       setWallets(results);
       onWallets?.(results);
     });
