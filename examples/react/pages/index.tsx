@@ -12,6 +12,7 @@ export default function Index() {
         <Example name="use-wallet-discovery" />
         <Example name="use-mutation" />
         <Example name="use-account" />
+        <Example name="use-transaction-status" />
       </ul>
     </>
   );

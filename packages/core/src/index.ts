@@ -8,4 +8,5 @@ export { useBlock } from "./useBlock";
 export { useEventSubscription } from "./useEventSubscription";
 export { useMutation } from "./useMutation";
 export { useScript } from "./useScript";
+export { useTransactionStatus } from "./useTransactionStatus";
 export { useWalletDiscovery } from "./useWalletDiscovery";
